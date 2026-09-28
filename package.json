@@ -1,0 +1,16 @@
+{
+  "name": "jingheng-medical-learning-platform",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "dev": "concurrently -n web,api -c cyan,green \"pnpm --filter @jingheng/web dev --host 0.0.0.0\" \"pnpm --filter @jingheng/api dev\"",
+    "dev:ai": "cd apps/ai && uvicorn app.main:app --reload --host 0.0.0.0 --port 8001",
+    "build": "pnpm --filter @jingheng/web build && pnpm --filter @jingheng/api check",
+    "start": "pnpm --filter @jingheng/api start",
+    "lint": "pnpm --filter @jingheng/web lint"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

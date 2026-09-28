@@ -1,0 +1,25 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: infra/docker/web.Dockerfile
+      args:
+        VITE_API_BASE_URL: /api/v1
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+      - ai
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      API_PORT: 4000
+      WEB_ORIGINS: http://localhost:8080
+  ai:
+    build:
+      context: .
+      dockerfile: apps/ai/Dockerfile
+    environment:
+      AI_PORT: 8001
