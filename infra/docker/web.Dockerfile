@@ -3,6 +3,7 @@ WORKDIR /repo
 RUN corepack enable
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY apps/web/package.json apps/web/package.json
+COPY apps/api/package.json apps/api/package.json
 RUN pnpm install --frozen-lockfile
 COPY apps/web apps/web
 ARG VITE_API_BASE_URL=/api/v1
